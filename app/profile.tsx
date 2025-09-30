@@ -7,10 +7,15 @@ import { useThemeContext } from "../src/contexts/ThemeContext";
 
 export default function ProfileScreen() {
   const { colors } = useThemeContext();
-  const { name: pName, bio: pBio } = useLocalSearchParams<{ name?: string; bio?: string }>();
-  const [name, setName] = useState("John Doe");
-  const [bio, setBio] = useState("Software developer learning React Native.");
-  const [avatar] = useState("https://i.pravatar.cc/150?img=5");
+  const { name: pName, bio: pBio } = useLocalSearchParams<{
+    name?: string;
+    bio?: string;
+  }>();
+  const [name, setName] = useState("Nguyen Vu");
+  const [bio, setBio] = useState(" QE180156. Software developer learning React Native.");
+  const [avatar] = useState(
+    "https://phanmemmkt.vn/wp-content/uploads/2024/09/avt-Facebook-hai-huoc-2.jpg"
+  );
 
   useEffect(() => {
     if (typeof pName === "string" && pName) setName(pName);
@@ -24,8 +29,17 @@ export default function ProfileScreen() {
       <ProfileCard name={name} bio={bio} avatar={avatar} />
 
       <View style={styles.btnRow}>
-        <Button title="Edit Profile" onPress={() => router.push({ pathname: "/edit-profile", params: { name, bio } })} />
-        <Button title="Settings" onPress={() => router.push("/settings")} style={{ marginTop: 10 }} />
+        <Button
+          title="Edit Profile"
+          onPress={() =>
+            router.push({ pathname: "/edit-profile", params: { name, bio } })
+          }
+        />
+        <Button
+          title="Settings"
+          onPress={() => router.push("/settings")}
+          style={{ marginTop: 10 }}
+        />
       </View>
     </View>
   );
